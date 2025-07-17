@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: demo-2
+    ports:
+    - 5432:5432
+    networks:
+    - my-pg-network
+    volumes:
+    - postgresql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 123321
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+    - 8080:8080
+volumes:
+  postgresql:
+
+networks:
+  my-pg-network:
+    driver: bridge
